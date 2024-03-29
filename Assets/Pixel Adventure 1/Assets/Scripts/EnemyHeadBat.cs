@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHead : MonoBehaviour
+public class EnemyHeadBat : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
