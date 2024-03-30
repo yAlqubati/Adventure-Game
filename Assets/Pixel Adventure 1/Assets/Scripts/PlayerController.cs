@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     public SpriteRenderer sr;
     public Transform lastCheckpoint;
+    public bool isFrozen = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isFrozen)
+        {
+            return;
+        }
+
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rb.velocity.y);
 
         isGrounded = Physics2D.OverlapCircle(feet.position, 0.5f, groundLayer);
@@ -55,6 +62,44 @@ public class PlayerController : MonoBehaviour
 
         anim.SetFloat("Running", Mathf.Abs(rb.velocity.x));
         anim.SetBool("IsJumping", !isGrounded);
+
         
     }
+
+    // other player hit this player and this player is frozen then unfreeze the player
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player" && isFrozen)
+        {
+            UnFreezePlayer();
+        }
+    }
+
+    public void FreezePlayer()
+    {
+        Debug.Log("Player is frozen");
+        isFrozen = true;
+        rb.velocity = Vector2.zero;
+        rb.isKinematic = true;
+        rb.isKinematic = false;
+        // make the color of the player blue
+        sr.color = Color.blue;
+        // stop the animation
+        anim.enabled = false;
+        
+    }
+
+    
+    
+    // unfreeze the player
+    public void UnFreezePlayer()
+    {
+        Debug.Log("Player is unfrozen");
+        isFrozen = false;
+        // make the color of the player white
+        sr.color = Color.white;
+        // start the animation
+        anim.enabled = true;
+    }
+
 }

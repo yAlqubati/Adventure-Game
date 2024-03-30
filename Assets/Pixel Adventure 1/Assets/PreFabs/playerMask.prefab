@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2235041728705006244}
   m_Layer: 0
   m_Name: playerMask
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,6 +170,8 @@ MonoBehaviour:
   isJumping: 0
   anim: {fileID: 0}
   sr: {fileID: 0}
+  lastCheckpoint: {fileID: 0}
+  isFrozen: 0
 --- !u!1 &2235041729486399594
 GameObject:
   m_ObjectHideFlags: 0

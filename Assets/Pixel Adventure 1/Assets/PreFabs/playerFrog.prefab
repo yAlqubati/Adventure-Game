@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 8958783182392449240}
   m_Layer: 0
   m_Name: playerFrog
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,6 +180,8 @@ MonoBehaviour:
   isJumping: 0
   anim: {fileID: 8958783182392449240}
   sr: {fileID: 0}
+  lastCheckpoint: {fileID: 0}
+  isFrozen: 0
 --- !u!95 &8958783182392449240
 Animator:
   serializedVersion: 5

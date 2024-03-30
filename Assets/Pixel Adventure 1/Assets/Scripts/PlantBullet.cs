@@ -29,8 +29,8 @@ public class PlantBullet : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("Player hit the bullet");
-            // don't forget to make the player get affected by the bullet
-            Destroy(gameObject);
+            other.GetComponent<PlayerController>().FreezePlayer();
+            Destroy(this.gameObject);
         }
     }
 }
