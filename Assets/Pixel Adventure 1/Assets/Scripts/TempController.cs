@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class TempController : MonoBehaviour
 {
 
     public Rigidbody2D rb;
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer sr;
     public Transform lastCheckpoint;
     public bool isFrozen = false;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,39 +36,42 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // do it other way
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rb.velocity.y);
-
         isGrounded = Physics2D.OverlapCircle(feet.position, 0.5f, groundLayer);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        anim.SetFloat("Running", Mathf.Abs(rb.velocity.x));
+        anim.SetBool("IsJumping", !isGrounded);
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+
+        float moveInput = context.ReadValue<Vector2>().x;
+        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+        if (moveInput > 0)
+        {
+            sr.flipX = false;
+        }
+        else if (moveInput < 0)
+        {
+            sr.flipX = true;
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        
+        if (context.performed && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isJumping = true;
         }
-
-        else if(Input.GetKeyDown(KeyCode.Space) && isJumping)
+        else if (context.performed && isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isJumping = false;
         }
-
-        if (rb.velocity.x > 0)
-        {
-            sr.flipX = false;
-        }
-        else if (rb.velocity.x < 0)
-        {
-            sr.flipX = true;
-        }
-
-        anim.SetFloat("Running", Mathf.Abs(rb.velocity.x));
-        anim.SetBool("IsJumping", !isGrounded);
-
-        
     }
 
-    // other player hit this player and this player is frozen then unfreeze the player
     public void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player" && isFrozen)
