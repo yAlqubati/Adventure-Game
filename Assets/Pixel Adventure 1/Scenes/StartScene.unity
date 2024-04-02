@@ -896,31 +896,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8958783182392449235, guid: 52adf256ed6d30a458fb1e65d9d3f1b6, type: 3}
   m_PrefabInstance: {fileID: 8958783182843633445}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &453658280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453658273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6791188548bfc549aca59a14ad7e910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  moveSpeed: 5
-  jumpForce: 5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  feet: {fileID: 2142891850}
-  isGrounded: 0
-  isJumping: 0
-  anim: {fileID: 0}
-  sr: {fileID: 0}
-  lastCheckpoint: {fileID: 0}
-  isFrozen: 0
 --- !u!114 &453658281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,8 +923,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 453658280}
-        m_TargetAssemblyTypeName: TempController, Assembly-CSharp
+      - m_Target: {fileID: 453658287}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -972,8 +947,8 @@ MonoBehaviour:
     m_ActionName: Player/Fire[/XInputControllerWindows/rightTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 453658280}
-        m_TargetAssemblyTypeName: TempController, Assembly-CSharp
+      - m_Target: {fileID: 453658287}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -1031,6 +1006,31 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &453658287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453658273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8078d122badf43a41a335496b24c856e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  moveSpeed: 5
+  jumpForce: 5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  feet: {fileID: 2142891850}
+  isGrounded: 0
+  isJumping: 0
+  anim: {fileID: 0}
+  sr: {fileID: 0}
+  lastCheckpoint: {fileID: 0}
+  isFrozen: 0
 --- !u!1 &617679247
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,7 +1242,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 4879594470242497136, guid: 43accc48cca45a6468d35e2905e45d54, type: 3}
+  m_PlayerPrefab: {fileID: 880814023353049232, guid: 639d3fec31cceaf47897de5871ee75e6, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -3335,7 +3335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1576900086234807138, guid: 54602343995a83e4b806e376a0b60579, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1576900086234807167, guid: 54602343995a83e4b806e376a0b60579, type: 3}
       propertyPath: m_RootOrder

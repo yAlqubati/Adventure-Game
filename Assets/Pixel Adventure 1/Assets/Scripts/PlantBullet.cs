@@ -31,16 +31,9 @@ public class PlantBullet : MonoBehaviour
             Debug.Log("Player hit the bullet");
 
             // if it hit a player check if he has a xBox controller or not
-            if (other.gameObject.GetComponent<PlayerControllerXbox>())
-            {
-                Debug.Log("Player has a xBox controller");
-                other.gameObject.GetComponent<PlayerControllerXbox>().FreezePlayer();
-            }
-            else
-            {
-                Debug.Log("Player has a keyboard controller");
-                other.gameObject.GetComponent<PlayerController>().FreezePlayer();
-            }
+            
+            other.gameObject.GetComponent<PlayerController>().FreezePlayer();
+            
 
             Destroy(this.gameObject);
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -35,36 +36,48 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // do it other way
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rb.velocity.y);
-
         isGrounded = Physics2D.OverlapCircle(feet.position, 0.5f, groundLayer);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        anim.SetFloat("Running", Mathf.Abs(rb.velocity.x));
+        anim.SetBool("IsJumping", !isGrounded);
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        if (isFrozen)
+        {
+            return;
+        }
+
+        float moveInput = context.ReadValue<Vector2>().x;
+        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+        if (moveInput > 0)
+        {
+            sr.flipX = false;
+        }
+        else if (moveInput < 0)
+        {
+            sr.flipX = true;
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (isFrozen)
+        {
+            return;
+        }
+        
+        if (context.performed && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isJumping = true;
         }
-
-        else if(Input.GetKeyDown(KeyCode.Space) && isJumping)
+        else if (context.performed && isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isJumping = false;
         }
-
-        if (rb.velocity.x > 0)
-        {
-            sr.flipX = false;
-        }
-        else if (rb.velocity.x < 0)
-        {
-            sr.flipX = true;
-        }
-
-        anim.SetFloat("Running", Mathf.Abs(rb.velocity.x));
-        anim.SetBool("IsJumping", !isGrounded);
-
-        
     }
 
     // other player hit this player and this player is frozen then unfreeze the player
@@ -80,13 +93,12 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Player is frozen");
         isFrozen = true;
-        rb.velocity = Vector2.zero;
-        rb.isKinematic = true;
-        rb.isKinematic = false;
         // make the color of the player blue
         sr.color = Color.blue;
         // stop the animation
         anim.enabled = false;
+        // stop the movement of the player, don't let him move
+        rb.velocity = Vector2.zero;
         
     }
 
