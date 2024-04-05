@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2235041728705006245}
   - component: {fileID: 2235041728705006244}
   - component: {fileID: -4818921549699762747}
+  - component: {fileID: 4322225616533149536}
   m_Layer: 0
   m_Name: playerMask
   m_TagString: Player
@@ -283,6 +284,21 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4322225616533149536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2235041728705006247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d15ddd60e8d7e47b144652dfe84ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+  healthBar: {fileID: 0}
 --- !u!1 &2235041729486399594
 GameObject:
   m_ObjectHideFlags: 0

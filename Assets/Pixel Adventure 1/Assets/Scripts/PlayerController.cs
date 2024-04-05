@@ -80,12 +80,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // other player hit this player and this player is frozen then unfreeze the player
-    public void OnCollisionEnter2D(Collision2D other)
+    // collision with other player
+    public void OnCollisionEnter2D(Collision2D other)   
     {
         if (other.gameObject.tag == "Player" && isFrozen)
         {
             UnFreezePlayer();
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Strawberry")
+        {
+            other.gameObject.SetActive(false);
+            GetComponent<PlayerHealth>().Heal(10);
+        }
+
+        else if(other.gameObject.tag == "Melon")
+        {
+            other.gameObject.SetActive(false);
+            GetComponent<PlayerHealth>().Heal(20);
         }
     }
 

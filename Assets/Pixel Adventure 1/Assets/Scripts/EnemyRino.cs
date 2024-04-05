@@ -28,7 +28,7 @@ public class EnemyRino : MonoBehaviour
 
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Player hit the body");
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(10);
         }
     }
 

@@ -8,6 +8,9 @@ public class PlantBullet : MonoBehaviour
     public float speed;
     public float lifeTime;
     public Rigidbody2D rb;
+    public float distance = 10f;
+    public LayerMask whatIsSolid;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,13 @@ public class PlantBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if the bullet is too far from the player destroy it
+        if (Vector2.Distance(transform.position, player.transform.position) > distance)
+        {
+            Destroy(gameObject);
+        }
+
+        
         
     }
 

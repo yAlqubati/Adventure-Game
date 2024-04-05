@@ -124,6 +124,10 @@ MonoBehaviour:
   speed: 4
   lifeTime: 0
   rb: {fileID: 0}
+  distance: 7
+  whatIsSolid:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!58 &-4598462158239125955
 CircleCollider2D:
   m_ObjectHideFlags: 0
