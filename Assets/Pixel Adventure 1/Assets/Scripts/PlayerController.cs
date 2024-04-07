@@ -28,7 +28,18 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         lastCheckpoint = new GameObject().transform;
+
+        // Set the players to the camera
+        if (CameraScript.player1 == null)
+        {
+            CameraScript.player1 = this.gameObject;
+        }
+        else
+        {
+            CameraScript.player2 = this.gameObject;
+        }
     }
+
 
     // Update is called once per frame
     void Update()
