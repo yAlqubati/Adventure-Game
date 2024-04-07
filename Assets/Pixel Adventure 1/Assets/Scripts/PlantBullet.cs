@@ -47,5 +47,17 @@ public class PlantBullet : MonoBehaviour
 
             Destroy(this.gameObject);
         }
+
+        if(other.gameObject.tag == "PlantEnemy")
+        {
+            return;
+        }
+
+        if (other.gameObject.tag != "Player")
+        {
+            Destroy(this.gameObject);
+        }
     }
+
+    
 }

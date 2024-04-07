@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Strawberry
   - Melon
+  - PlantEnemy
   layers:
   - Default
   - TransparentFX

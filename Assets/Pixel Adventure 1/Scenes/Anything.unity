@@ -702,6 +702,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1576900086234807138, guid: 54602343995a83e4b806e376a0b60579, type: 3}
+      propertyPath: m_TagString
+      value: PlantEnemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1576900086234807164, guid: 54602343995a83e4b806e376a0b60579, type: 3}
       propertyPath: shootInterval
       value: 1
@@ -712,7 +716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1576900086234807166, guid: 54602343995a83e4b806e376a0b60579, type: 3}
       propertyPath: m_FlipX
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1576900086234807167, guid: 54602343995a83e4b806e376a0b60579, type: 3}
       propertyPath: m_RootOrder
@@ -720,11 +724,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1576900086234807167, guid: 54602343995a83e4b806e376a0b60579, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.89
+      value: 7.95
       objectReference: {fileID: 0}
     - target: {fileID: 1576900086234807167, guid: 54602343995a83e4b806e376a0b60579, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.81
+      value: 3.92
       objectReference: {fileID: 0}
     - target: {fileID: 1576900086234807167, guid: 54602343995a83e4b806e376a0b60579, type: 3}
       propertyPath: m_LocalPosition.z

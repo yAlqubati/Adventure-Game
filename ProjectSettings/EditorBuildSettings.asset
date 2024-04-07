@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Pixel Adventure 1/Scenes/Anything.unity
     guid: 585fb94ad2557c64e8b82ddf34d235fc
   - enabled: 1
-    path: Assets/Pixel Adventure 1/Scenes/Level1.unity
-    guid: dd8d7ddcadf8a9a41ba8bc93480098b5
+    path: Assets/Pixel Adventure 1/Scenes/YousefLike.unity
+    guid: 9ca3182fb76a3614fb30fbdec908e26a
+  - enabled: 1
+    path: Assets/Pixel Adventure 1/Scenes/Level3.unity
+    guid: fe45199a62b40ab43b4de11ea5789721
   m_configObjects: {}

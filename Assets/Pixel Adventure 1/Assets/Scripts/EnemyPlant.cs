@@ -4,79 +4,81 @@ using UnityEngine;
 
 public class EnemyPlant : MonoBehaviour
 {
-    public SpriteRenderer sr;
-    public Sprite deadSprite;
-    public Animator anim;
-
     public GameObject bullet;
     public Transform bulletSpawnPoint;
-    public float timer;
-    public float shootInterval = 5;
+    public float shootInterval = 5f;
+    public float detectionRange = 5f;
+    public bool isShooting = false;
     public bool isDead = false;
+    public Sprite deadSprite;
+    public SpriteRenderer sr;
+    public GameObject[] players;
+    public float timer = 0f;
 
-    // Reference to the player GameObject
-    private GameObject player;
-
-    // Start is called before the first frame update
     void Start()
     {
+        players = GameObject.FindGameObjectsWithTag("Player");
         sr = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
-
-        timer = 0;
-
-        // Find the player GameObject by tag
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-
-        if (timer >= shootInterval && !isDead)
+        if (!isDead)
         {
-            timer = 0;
-            Shoot();
-        }
-
-       // using the sprite renderer to flip the sprite based on the player's position
-        if (player != null)
-        {
-            if (player.transform.position.x < transform.position.x)
+            foreach (GameObject player in players)
             {
-                sr.flipX = true;
-            }
-            else
-            {
-                sr.flipX = false;
+                if (player != null)
+                {
+                    // Check if the player is within the detection range
+                    if (Vector2.Distance(transform.position, player.transform.position) <= detectionRange)
+                    {
+                        // Start shooting if not already shooting
+                        if (!isShooting)
+                        {
+                            isShooting = true;
+                            StartCoroutine(ShootPlayer());
+                        }
+                    }
+                }
             }
         }
     }
 
-    public void Shoot()
+    IEnumerator ShootPlayer()
     {
-        if (player != null)
+        while (isShooting && !isDead)
         {
-            if (player.transform.position.x < transform.position.x)
+            foreach (GameObject player in players)
             {
-                Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+                if (player != null)
+                {
+                    // Get the direction to shoot based on the sprite's flipX property
+                    Vector2 shootDirection = sr.flipX ? Vector2.right : Vector2.left;
+
+                    // Shoot at the player
+                    Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity).GetComponent<Rigidbody2D>().velocity = shootDirection * 10f;
+                }
             }
+
+            // Wait for the specified interval before shooting again
+            yield return new WaitForSeconds(shootInterval);
         }
     }
+
 
     public void Die()
     {
         Debug.Log("Plant died");
         isDead = true;
         sr.sprite = deadSprite;
+        // Add any other death-related actions here
         StartCoroutine(WaitForDeath());
     }
 
     IEnumerator WaitForDeath()
     {
         // wait for 1 second
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }
