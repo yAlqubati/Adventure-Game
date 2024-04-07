@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
             healthText.text = currentHealth.ToString() + "%";
             healthBar.fillAmount = currentHealth / maxHealth;
             Debug.Log("Player is dead");
-            //Die();
+            Die();
         }
         else
         {
@@ -54,6 +54,21 @@ public class PlayerHealth : MonoBehaviour
         {
             healthText.text = currentHealth.ToString() + "%";
         }
+        healthBar.fillAmount = currentHealth / maxHealth;
+    }
+
+    public void Die()
+    {
+        // freeze the player
+        GetComponent<PlayerController>().FreezePlayer();
+        // respawn the player
+        GameManager.instance.RespawnPlayer(gameObject.name);
+    }
+
+    public void Respawn()
+    {
+        currentHealth = maxHealth;
+        healthText.text = currentHealth.ToString() + "%";
         healthBar.fillAmount = currentHealth / maxHealth;
     }
 

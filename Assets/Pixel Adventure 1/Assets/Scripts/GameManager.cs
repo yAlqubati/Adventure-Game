@@ -7,9 +7,19 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public CheckPoint[] checkPoints;
     
+    public GameObject firstFlag;
+    public GameObject secondFlag;
     void Awake()
     {
-        instance = this;
+        // singleton pattern
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -20,7 +30,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        isLevelComplete();
+    }
+
+    void isLevelComplete()
+    {
+        if (firstFlag.GetComponent<EndFlag>().isReached && secondFlag.GetComponent<EndFlag>().isReached)
+        {
+            // go to the next level
+            Debug.Log("Level Complete");
+            // load the next level from the MySceneManager
+            MySceneManager.instance.LoadNextScene();
+        }
     }
 
     public void DeactivateCheckPoints()
@@ -43,7 +64,9 @@ public class GameManager : MonoBehaviour
     public IEnumerator Respawn(string playerName)
     {
         yield return new WaitForSeconds(0.5f);
-        
+        // unfreeze the player
+        GameObject.Find(playerName).GetComponent<PlayerController>().UnFreezePlayer();
         GameObject.Find(playerName).transform.position = GameObject.Find(playerName).GetComponent<PlayerController>().lastCheckpoint.position;
+        GameObject.Find(playerName).GetComponent<PlayerHealth>().Respawn();
     }
 }

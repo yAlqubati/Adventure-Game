@@ -28,7 +28,7 @@ public class EnemyRino : MonoBehaviour
 
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(10);
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(40);
         }
     }
 

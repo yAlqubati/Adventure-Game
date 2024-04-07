@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+
+        lastCheckpoint = new GameObject().transform;
     }
 
     // Update is called once per frame

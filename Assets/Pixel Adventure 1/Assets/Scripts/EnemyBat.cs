@@ -24,7 +24,7 @@ public class EnemyBat : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Player hit the body");
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(20);
         }
     }
 

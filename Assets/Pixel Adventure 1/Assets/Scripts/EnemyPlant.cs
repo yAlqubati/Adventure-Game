@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyPlant : MonoBehaviour
 {
-    // if you changed the timer then you need to adjust the animation speed
     public SpriteRenderer sr;
     public Sprite deadSprite;
     public Animator anim;
@@ -15,6 +14,9 @@ public class EnemyPlant : MonoBehaviour
     public float shootInterval = 5;
     public bool isDead = false;
 
+    // Reference to the player GameObject
+    private GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,9 @@ public class EnemyPlant : MonoBehaviour
         anim = GetComponent<Animator>();
 
         timer = 0;
+
+        // Find the player GameObject by tag
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -33,13 +38,33 @@ public class EnemyPlant : MonoBehaviour
         {
             timer = 0;
             Shoot();
-        }   
+        }
+
+       // using the sprite renderer to flip the sprite based on the player's position
+        if (player != null)
+        {
+            if (player.transform.position.x < transform.position.x)
+            {
+                sr.flipX = true;
+            }
+            else
+            {
+                sr.flipX = false;
+            }
+        }
     }
 
     public void Shoot()
     {
-        Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+        if (player != null)
+        {
+            if (player.transform.position.x < transform.position.x)
+            {
+                Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+            }
+        }
     }
+
     public void Die()
     {
         Debug.Log("Plant died");
