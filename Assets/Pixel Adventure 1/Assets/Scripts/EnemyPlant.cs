@@ -45,6 +45,8 @@ public class EnemyPlant : MonoBehaviour
 
     public void Die()
     {
+                AudioManager.instance.PlayAudio(3);
+
         if (isDead) return;
 
         isDead = true;
