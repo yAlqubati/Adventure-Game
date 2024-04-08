@@ -1,63 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlantBullet : MonoBehaviour
 {
-    public GameObject player;
-    public float speed;
-    public float lifeTime;
-    public Rigidbody2D rb;
-    public float distance = 10f;
-    public LayerMask whatIsSolid;
+    public float speed = 5f; // Speed of the bullet
+    public float maxDistance = 10f; // Maximum distance the bullet can travel before destroying itself
+    public Vector3 startPosition; // Starting position of the bullet
 
-    // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        rb = GetComponent<Rigidbody2D>();
-        Vector2 moveDirection = (player.transform.position - transform.position).normalized * speed;
-        rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
+        Debug.Log("PlantBullet Start");
+        // Record the starting position of the bullet
+        startPosition = transform.position;
 
+        // Shoot the bullet in the direction it's facing
+        GetComponent<Rigidbody2D>().velocity = transform.right * speed;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // if the bullet is too far from the player destroy it
-        if (Vector2.Distance(transform.position, player.transform.position) > distance)
+        // Check if the bullet has traveled beyond the max distance from the starting point
+        if (Vector3.Distance(startPosition, transform.position) > maxDistance)
         {
+            // Destroy the bullet if it's traveled too far
             Destroy(gameObject);
         }
-
-        
-        
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        // If the bullet hits a player, freeze the player
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("Player hit the bullet");
-
-            // if it hit a player check if he has a xBox controller or not
-            
-            other.gameObject.GetComponent<PlayerController>().FreezePlayer();
-            
-
-            Destroy(this.gameObject);
-        }
-
-        if(other.gameObject.tag == "PlantEnemy")
-        {
-            return;
-        }
-
-        if (other.gameObject.tag != "Player")
-        {
-            Destroy(this.gameObject);
+            other.GetComponent<PlayerController>().FreezePlayer();
+            Destroy(gameObject);
         }
     }
-
-    
 }
