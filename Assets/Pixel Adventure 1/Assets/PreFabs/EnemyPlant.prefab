@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1576900086234807164}
   m_Layer: 0
   m_Name: EnemyPlant
-  m_TagString: Untagged
+  m_TagString: PlantEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1558933157
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 4114111432495891202, guid: f85ccb91ff4f71d44808845949b0798b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -126,14 +126,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f458e2885b93b4094350a8c30116b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sr: {fileID: 0}
-  deadSprite: {fileID: -2714124040709988899, guid: 99a6f8d881d96d045a18fa94cfb5b914, type: 3}
-  anim: {fileID: 0}
-  bullet: {fileID: 3989094527216392603, guid: 6a66a974b9d75b54bab3b3da40f90077, type: 3}
+  bulletPrefab: {fileID: 3989094527216392603, guid: 6a66a974b9d75b54bab3b3da40f90077, type: 3}
   bulletSpawnPoint: {fileID: 1576900086999171353}
-  timer: 0
   shootInterval: 2
+  deadSprite: {fileID: -2714124040709988899, guid: 99a6f8d881d96d045a18fa94cfb5b914, type: 3}
   isDead: 0
+  timer: 0
 --- !u!1 &1576900086999171352
 GameObject:
   m_ObjectHideFlags: 0

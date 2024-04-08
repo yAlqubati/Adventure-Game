@@ -33,8 +33,14 @@ public class EnemyPlant : MonoBehaviour
 
     void Shoot()
     {
+        // Determine the direction to shoot based on plant's orientation
+        Vector2 shootDirection = !spriteRenderer.flipX ? Vector2.left : Vector2.right;
+
         // Spawn a bullet at the bullet spawn point
-        Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
+        
+        // Set the bullet's velocity based on the shoot direction and bullet speed
+        bullet.GetComponent<Rigidbody2D>().velocity = shootDirection * bullet.GetComponent<PlantBullet>().speed;
     }
 
     public void Die()

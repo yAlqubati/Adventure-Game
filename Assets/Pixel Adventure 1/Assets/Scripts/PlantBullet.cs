@@ -8,12 +8,10 @@ public class PlantBullet : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("PlantBullet Start");
         // Record the starting position of the bullet
         startPosition = transform.position;
 
-        // Shoot the bullet in the direction it's facing
-        GetComponent<Rigidbody2D>().velocity = transform.right * speed;
+        // No need to set velocity here, it will be set by EnemyPlant script
     }
 
     void Update()
@@ -32,6 +30,17 @@ public class PlantBullet : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerController>().FreezePlayer();
+            Destroy(gameObject);
+        }
+
+        else if(other.CompareTag("PlantEnemy"))
+        {
+            return;
+        }
+
+        // Destroy the bullet if it hits anything else
+        else
+        {
             Destroy(gameObject);
         }
     }
