@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class GameManager : MonoBehaviour
     public GameObject firstFlag;
     public GameObject secondFlag;
 
-    private bool levelIsCompleting = false; // To prevent the coroutine from being called multiple times
+    // Flag to prevent level completion from being triggered multiple times
+    private bool isLevelCompleted = false;
 
     void Awake()
     {
@@ -17,7 +19,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Optional: Keep the GameManager across scenes
+            DontDestroyOnLoad(gameObject); // Keep the GameManager across scenes
         }
         else
         {
@@ -27,44 +29,44 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        // Subscribe to the scene loaded event
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Reset level completion flag when a new level starts
+        isLevelCompleted = false;
+
+        // Find all checkpoints in the scene
         checkPoints = FindObjectsOfType<CheckPoint>();
     }
 
     void Update()
     {
-        if (!levelIsCompleting) // Check if the level is not already completing
+        // Check if both flags are reached and the level is not already completed
+        if (!isLevelCompleted && firstFlag != null && secondFlag != null &&
+            firstFlag.GetComponent<EndFlag>().isReached && secondFlag.GetComponent<EndFlag>().isReached)
         {
-            isLevelComplete();
-        }
-    }
-
-    void isLevelComplete()
-    {
-        if (firstFlag.GetComponent<EndFlag>().isReached && secondFlag.GetComponent<EndFlag>().isReached)
-        {
-            if (!levelIsCompleting) // Prevent multiple calls to the coroutine
-            {
-                StartCoroutine(CompleteLevel());
-                levelIsCompleting = true; // Mark that level completion is in process
-            }
+            // Mark the level as completed and trigger level completion
+            isLevelCompleted = true;
+            StartCoroutine(CompleteLevel());
         }
     }
 
     IEnumerator CompleteLevel()
     {
-
-                AudioManager.instance.PlayAudio(5);
+        AudioManager.instance.PlayAudio(5);
 
         // Wait for 3 seconds before playing the winning sound and loading the next level
         yield return new WaitForSeconds(3);
-        
-        // Play the winning sound
 
         // Log level completion and load the next level from MySceneManager
         Debug.Log("Level Complete");
         MySceneManager.instance.LoadNextScene();
     }
 
+    // Deactivate all checkpoints in the scene
     public void DeactivateCheckPoints()
     {
         foreach (CheckPoint cp in checkPoints)
@@ -73,16 +75,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Respawn the player at the last checkpoint
     public void RespawnPlayer(string playerName)
     {
         Debug.Log("Respawning player: " + playerName);
         StartCoroutine(Respawn(playerName));
     }
 
-    public IEnumerator Respawn(string playerName)
+    IEnumerator Respawn(string playerName)
     {
         yield return new WaitForSeconds(0.5f);
-        // Unfreeze the player
+        // Unfreeze the player and respawn at the last checkpoint
         GameObject player = GameObject.Find(playerName);
         if (player != null)
         {

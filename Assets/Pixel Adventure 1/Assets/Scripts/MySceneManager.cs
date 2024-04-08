@@ -9,20 +9,12 @@ public class MySceneManager : MonoBehaviour
 
     void Awake()
     {
-        // make it a singleton
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
     }
 
     public void LoadNextScene()
     {
+        Debug.Log("current scene index: " + SceneManager.GetActiveScene().buildIndex);
         // get the current scene index
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         // load the next scene
