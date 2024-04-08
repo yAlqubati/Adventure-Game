@@ -1835,6 +1835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sounds
       objectReference: {fileID: 0}
+    - target: {fileID: 6684900173073059055, guid: 55ec274630cd2f8469b9bfcc8cab40ae, type: 3}
+      propertyPath: audioClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: a3241acb95554784ea3e333f35746292, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55ec274630cd2f8469b9bfcc8cab40ae, type: 3}
 --- !u!4 &916957775 stripped
@@ -3350,7 +3354,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528995439}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3171692, y: 1.19046, z: -28.80016}
+  m_LocalPosition: {x: -1.32, y: 1.61, z: -28.80016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

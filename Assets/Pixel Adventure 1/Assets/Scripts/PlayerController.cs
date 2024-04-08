@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         
-        //AudioManager.instance.PlayAudio(5);
+        AudioManager.instance.PlayAudio(4);
         if (context.performed && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
