@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         
+        //AudioManager.instance.PlayAudio(5);
         if (context.performed && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -108,13 +109,18 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             GetComponent<PlayerHealth>().Heal(10);
+                    AudioManager.instance.PlayAudio(0);
+
         }
 
         else if(other.gameObject.tag == "Melon")
         {
             other.gameObject.SetActive(false);
             GetComponent<PlayerHealth>().Heal(20);
+                    AudioManager.instance.PlayAudio(0);
+
         }
+        
     }
 
     public void FreezePlayer()
@@ -127,7 +133,8 @@ public class PlayerController : MonoBehaviour
         anim.enabled = false;
         // stop the movement of the player, don't let him move
         rb.velocity = Vector2.zero;
-        
+       AudioManager.instance.PlayAudio(2);
+
     }
 
     
