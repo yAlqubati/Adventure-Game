@@ -684,7 +684,7 @@ MonoBehaviour:
   vcam: {fileID: 0}
   isPlayer2Active: 0
   minZoom: 5
-  maxZoom: 10
+  maxZoom: 10.2
   zoomSpeed: 2
 --- !u!114 &665286501
 MonoBehaviour:
@@ -708,7 +708,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5.65157
+    OrthographicSize: 10.19998
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -4743,7 +4743,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.65157
+  orthographic size: 10.19998
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

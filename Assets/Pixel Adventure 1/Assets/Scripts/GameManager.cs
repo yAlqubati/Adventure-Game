@@ -15,17 +15,9 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        // Singleton pattern
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Keep the GameManager across scenes
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
     }
+
 
     void Start()
     {
