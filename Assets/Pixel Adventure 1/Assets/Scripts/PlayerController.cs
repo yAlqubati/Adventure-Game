@@ -81,14 +81,16 @@ public class PlayerController : MonoBehaviour
             return;
         }
         
-        AudioManager.instance.PlayAudio(4);
+        
         if (context.performed && isGrounded)
         {
+            AudioManager.instance.PlayAudio(4);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isJumping = true;
         }
         else if (context.performed && isJumping)
         {
+            AudioManager.instance.PlayAudio(4);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isJumping = false;
         }
@@ -109,7 +111,7 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             GetComponent<PlayerHealth>().Heal(10);
-                    AudioManager.instance.PlayAudio(0);
+            AudioManager.instance.PlayAudio(0);
 
         }
 
@@ -117,7 +119,7 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             GetComponent<PlayerHealth>().Heal(20);
-                    AudioManager.instance.PlayAudio(0);
+            AudioManager.instance.PlayAudio(0);
 
         }
         

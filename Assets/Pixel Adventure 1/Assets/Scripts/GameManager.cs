@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         if (!isLevelCompleted && firstFlag != null && secondFlag != null &&
             firstFlag.GetComponent<EndFlag>().isReached && secondFlag.GetComponent<EndFlag>().isReached)
         {
-            // Mark the level as completed and trigger level completion
+            Debug.Log("Both flags reached");
             isLevelCompleted = true;
             StartCoroutine(CompleteLevel());
         }

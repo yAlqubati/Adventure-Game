@@ -30,9 +30,7 @@ public class EnemyBat : MonoBehaviour
 
     public void Die()
     {
-                AudioManager.instance.PlayAudio(3);
-
-        Debug.Log("Rino died");
+        AudioManager.instance.PlayAudio(3);
 
         sr.sprite = deadSprite;
 

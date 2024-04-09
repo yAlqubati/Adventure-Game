@@ -685,7 +685,7 @@ MonoBehaviour:
   isPlayer2Active: 0
   minZoom: 5
   maxZoom: 10
-  zoomSpeed: 5
+  zoomSpeed: 2
 --- !u!114 &665286501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,7 +708,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 10
+    OrthographicSize: 5.65157
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -4743,7 +4743,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 5.65157
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5662,6 +5662,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sounds
       objectReference: {fileID: 0}
+    - target: {fileID: 6684900173073059055, guid: 55ec274630cd2f8469b9bfcc8cab40ae, type: 3}
+      propertyPath: audioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 97d28f3703b2b18449547c6a029b0302, type: 3}
     - target: {fileID: 6684900173073059055, guid: 55ec274630cd2f8469b9bfcc8cab40ae, type: 3}
       propertyPath: audioClips.Array.data[4]
       value: 

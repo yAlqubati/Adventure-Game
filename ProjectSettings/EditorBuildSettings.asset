@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Pixel Adventure 1/Scenes/Graveyard.unity
     guid: efced4804061fd241b6b2d25851bc6bf
+  - enabled: 1
+    path: Assets/Pixel Adventure 1/Scenes/Final.unity
+    guid: d66238b1a0ffaec4da99a87e6e5c8ae8
   m_configObjects: {}
